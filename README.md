@@ -36,16 +36,16 @@ Both the gauges have the same attributes:
 
 ### color config
 
-Colors may be configured for both gauges at once or individualy. You may configure as much colors as you like.
+You may configure as many colors as you like.
 
-Its a simple list of colors and values where if the gauges value is above the according color is used.
-Each entry of the color list must consist of a color and a value. When the gauges value is above a value in that list,
-the corresponding color is used for the gauge.
-The list is automatically sorted so you don't need to in your config - but I recommend it anyways.
+Colors can be configured as simple list of color and value pairs. If a gauges value is above one of these values,
+the according color is used for that gauge. If no color is found, the last color in the list is used as a fallback.
+The list is automatically sorted so you don't need to do that in your config - but I recommend it anyways.
 
-If no color is found, the last color in the list is used as a fallback.
+Colors may be configured for both gauges at once or individualy. In the latter case, colors for then inner gauge
+are shaded by 25%.
 
-To use a single color for every value just use a single list entry with any value to always trigger the fallback.
+To use a single color regardless of the value just use a single list entry with any value to always trigger the fallback.
 
 ## Example
 
