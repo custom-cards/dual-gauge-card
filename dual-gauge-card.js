@@ -65,21 +65,15 @@ class DualGaugeCard extends HTMLElement {
   }
 
   _showDetails(gauge) {
-    this._fire('hass-more-info', {
-      entityId: this.config[gauge].entity
-    });
-  }
-
-  _fire(type, detail) {
-    const node = this.card;
-    detail = (detail === null || detail === undefined) ? {} : detail;
-    const event = new Event(type, {
+    const event = new Event('hass-more-info', {
       bubbles: true,
       cancelable: false,
       composed: true
     });
-    event.detail = detail;
-    node.dispatchEvent(event);
+    event.detail = {
+      entityId: this.config[gauge].entity
+    };
+    this.card.dispatchEvent(event);
     return event;
   }
 
