@@ -238,6 +238,7 @@ class DualGaugeCard extends HTMLElement {
         height: 200%;
         border-radius: 100%;
         border: var(--gauge-width) solid;
+        transition: border-color .5s linear;
       }
 
       .circle-container {
@@ -248,6 +249,7 @@ class DualGaugeCard extends HTMLElement {
         height: 50%;
         width: 100%;
         overflow: hidden;
+        transition: transform .5s linear;
       }
 
       .small-circle .circle {
