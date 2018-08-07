@@ -2,14 +2,11 @@
 
 Two gauges in one, built mostly with CSS.
 
-Still WIP but usable.
-
 ![dual-gauge-card-screenshot](https://user-images.githubusercontent.com/2353088/43733272-5f59d8fe-99b4-11e8-8161-0c55e096b862.png)
 
 
-Heavily inspired by [ciotlosm's gauge-card](https://github.com/ciotlosm/custom-lovelace/), but completly remimplented.
-
-Why reimplement it? Just for fun with CSS and custom cards :wink:
+Heavily inspired by [ciotlosm's gauge-card](https://github.com/ciotlosm/custom-lovelace/), but completly written
+from scratch.
 
 ## Config
 
@@ -36,16 +33,17 @@ Both the gauges have the same attributes:
 
 ### color config
 
-You may configure as many colors as you like.
+Colors can be configured as list of pairs of each a color and a value.
 
-Colors can be configured as simple list of color and value pairs. If a gauges value is above one of these values,
-the according color is used for that gauge. If no color is found, the last color in the list is used as a fallback.
+If a gauges value is above one of those values, the according color is used for that gauge.
+If no color is found, the last color in the list is used as a fallback.
+To use a single color regardless of the value just use a single list entry with any value to always trigger
+the fallback.
+
+Colors may be configured for both gauges at once or for each gauge individualy. In the latter case,
+colors for then inner gauge are shaded by 25%.
+
 The list is automatically sorted so you don't need to do that in your config - but I recommend it anyways.
-
-Colors may be configured for both gauges at once or individualy. In the latter case, colors for then inner gauge
-are shaded by 25%.
-
-To use a single color regardless of the value just use a single list entry with any value to always trigger the fallback.
 
 ## Example
 
