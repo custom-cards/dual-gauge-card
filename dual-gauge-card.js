@@ -25,11 +25,11 @@ class DualGaugeCard extends HTMLElement {
       this.config.max = 100;
     }
 
+    if (!this.config.hasOwnProperty('shadeInner')) {
+      this.config.shadeInner = true
+    }
     if (this.config.colors) {
-      this.config.shadeInner = true; //config.shadeInner !== false;
       this.config.inner.colors = this.config.outer.colors = this.config.colors;
-    } else {
-      this.config.shadeInner = false; //config.shadeInner === true;
     }
 
     if (this.config.inner.colors) {
@@ -58,10 +58,6 @@ class DualGaugeCard extends HTMLElement {
     if (color) {
       this.nodes.content.style.setProperty('--' + gauge + '-color', color);
     }
-  }
-
-  _showOuterDetails() {
-    this._showDetails('outer');
   }
 
   _showDetails(gauge) {
@@ -185,6 +181,10 @@ class DualGaugeCard extends HTMLElement {
 
     if (this.config.shadeInner) {
       this.nodes.content.classList.add('shadeInner');
+    }
+
+    if (this.config.card_width) {
+      this.nodes.content.style.setProperty('--gauge-card-width', this.config.card_width + 'px');
     }
 
     this._initStyles();
