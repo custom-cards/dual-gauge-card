@@ -183,8 +183,8 @@ class DualGaugeCard extends HTMLElement {
       this.nodes.content.classList.add('shadeInner');
     }
 
-    if (this.config.card_width) {
-      this.nodes.content.style.setProperty('--gauge-card-width', this.config.card_width + 'px');
+    if (this.config.cardwidth) {
+      this.nodes.content.style.setProperty('--gauge-card-width', this.config.cardwidth + 'px');
     }
 
     this._initStyles();

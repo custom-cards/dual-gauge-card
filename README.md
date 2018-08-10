@@ -10,14 +10,15 @@ from scratch.
 
 ## Config
 
-| Name   | Type   | Default | Description                |
-|--------|--------|---------|----------------------------|
-| title  | string |         | Common title               |
-| min    | int    | 0       | minimum value              |
-| max    | int    | 100     | maximum value              |
-| outer  | object |         | config for the outer gauge |
-| inner  | object |         | config for the outer gauge |
-| colors | object |         | color config (optional)    |
+| Name      | Type   | Default | Description                            |
+|-----------|--------|---------|----------------------------------------|
+| title     | string |         | Common title                           |
+| min       | int    | 0       | minimum value                          |
+| max       | int    | 100     | maximum value                          |
+| outer     | object |         | config for the outer gauge             |
+| inner     | object |         | config for the outer gauge             |
+| colors    | object |         | color config (optional)                |
+| cardwidth | int    | 300     | width or the card in pixel (see below) |
 
 ### gauge config
 
@@ -30,6 +31,13 @@ Both the gauges have the same attributes:
 | label     | string |         | label for this gauges value (optional)                           |
 | unit      | object |         | unit to add to the value (optional)                              |
 | colors    | object |         | color config (optional)                                          |
+
+### cardwidth
+
+You may use the config value _cardwidth_ to set the overall width of the card as an absolute value in pixels.
+All elements of the gauge are sized relative to this so that the gauge scales to this, _but_ the card is not
+responsible for now, i.e. it doesn't resize automatically.
+
 
 ### color config
 
