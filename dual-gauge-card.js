@@ -101,8 +101,8 @@ class DualGaugeCard extends HTMLElement {
     if (!gaugeConfig.colors) return;
 
     var i = 0,
-      count = gaugeConfig.colors.length;
-    for (; i < count - 1; i++) {
+      count = gaugeConfig.colors.length - 1;
+    for (; i < count; i++) {
       if (value >= gaugeConfig.colors[i].value) return gaugeConfig.colors[i].color;
     }
 
