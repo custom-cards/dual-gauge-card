@@ -18,13 +18,20 @@ class DualGaugeCard extends HTMLElement {
     }
     this.config = config;
 
-    if (!this.config.min) {
-      this.config.min = 0;
+    if (!this.config.min & (!this.config.inner.min || !this.config.outer.min)) {
+      this.config.inner.min = this.config.outer.min = 0;
     }
-    if (!this.config.max) {
-      this.config.max = 100;
+    if (!this.config.max & (!this.config.inner.max || !this.config.outer.max)) {
+      this.config.inner.max = this.config.outer.max = 100;
     }
 
+    if (this.config.min) {
+      this.config.inner.min = this.config.outer.min = this.config.min;
+    }
+    if (this.config.max) {
+      this.config.inner.max = this.config.outer.max = this.config.max;
+    }
+    
     if (!this.config.hasOwnProperty('shadeInner')) {
       this.config.shadeInner = true
     }
@@ -48,7 +55,7 @@ class DualGaugeCard extends HTMLElement {
   _updateGauge(gauge) {
     const gaugeConfig = this.config[gauge];
     const value = this._getEntityStateValue(this._hass.states[gaugeConfig.entity], gaugeConfig.attribute);
-    this.nodes.content.style.setProperty('--' + gauge + '-angle', this._calculateRotation(value));
+    this.nodes.content.style.setProperty('--' + gauge + '-angle', this._calculateRotation(gauge,value));
     this.nodes[gauge].value.innerHTML = this._formatValue(value, gaugeConfig);
     if (gaugeConfig.label) {
       this.nodes[gauge].label.innerHTML = gaugeConfig.label;
@@ -89,8 +96,13 @@ class DualGaugeCard extends HTMLElement {
     return entity.attributes[attribute];
   }
 
-  _calculateRotation(value) {
-    return (180 - (value - this.config.min) / (this.config.max - this.config.min) * -180) + 'deg';
+  _calculateRotation(gauge,value) {
+    if(gauge == 'inner'){
+      return (180 - (value - this.config.inner.min) / (this.config.inner.max - this.config.inner.min) * -180) + 'deg';
+    }
+    if(gauge == 'outer'){
+      return (180 - (value - this.config.outer.min) / (this.config.outer.max - this.config.outer.min) * -180) + 'deg';
+    }
   }
 
   _findColor(value, gaugeConfig) {
@@ -226,7 +238,7 @@ class DualGaugeCard extends HTMLElement {
         width: 100%;
         height: 0;
         padding-bottom:100%;
-        background-color: white;
+        background-color: var(--card-background-color);
         position: relative;
       }
 
