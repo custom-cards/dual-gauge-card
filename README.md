@@ -22,7 +22,7 @@ from scratch.
 
 ### gauge config
 
-Both the gauges have the same attributes:
+Both gauges have the same attributes:
 
 | Name      | Type   | Default | Description                                                      |
 |-----------|--------|---------|------------------------------------------------------------------|
@@ -36,7 +36,7 @@ Both the gauges have the same attributes:
 
 You may use the config value _cardwidth_ to set the overall width of the card as an absolute value in pixels.
 All elements of the gauge are sized relative to this so that the gauge scales to this, _but_ the card is not
-responsible for now, i.e. it doesn't resize automatically.
+responsive for now, i.e. it doesn't resize automatically.
 
 
 ### color config
