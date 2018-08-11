@@ -31,6 +31,8 @@ Both the gauges have the same attributes:
 | label     | string |         | label for this gauges value (optional)                           |
 | unit      | object |         | unit to add to the value (optional)                              |
 | colors    | object |         | color config (optional)                                          |
+| min       | int    | min from Config   | minimum value (optional)                               |
+| max       | int    | max from Config   | maximum value (optional)                               |
 
 ### cardwidth
 
@@ -53,7 +55,17 @@ colors for then inner gauge are shaded by 25%.
 
 The list is automatically sorted so you don't need to do that in your config - but I recommend it anyways.
 
-## Example
+### min and max config
+
+There is 3 ways to config the minimum and maximum value of the gauge:
+
+1. No configuration - The vaule for outer and inner will be 0-100 (as default)
+2. Configuration in the "Config" part - The vaule for outer and inner will be the same.
+3. Configuration in outer and inner separately - outer and inner will have different values , as you set
+
+
+
+## Examples
 
 The example on the screenshot is configured like this:
 ```
@@ -83,4 +95,32 @@ The example on the screenshot is configured like this:
      - color: "var(--paper-blue-400)"
        value: -40
 ```
-
+Example for gauge with separately min and max values and colors-inside outer gauge and inner gauge:
+```
+      - type: custom:dual-gauge-card
+        title: SpeedTest
+        outer:
+          entity: sensor.speedtest_download        
+          min: 0
+          max: 400
+          label: "Down"
+          colors:
+           - color: 'var(--label-badge-red)'
+             value: 90
+           - color: 'var(--label-badge-yellow)'
+             value: 250
+           - color: 'var(--label-badge-green)'
+             value: 350
+        inner:
+          entity: sensor.speedtest_upload        
+          min: 0
+          max: 100
+          label: "Up"
+          colors:
+          - color: 'var(--label-badge-red)'
+            value: 30
+          - color: 'var(--label-badge-green)'
+            value: 50
+          - color: 'var(--label-badge-blue)'
+            value: 70  
+```
