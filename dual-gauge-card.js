@@ -226,7 +226,7 @@ class DualGaugeCard extends HTMLElement {
         width: 100%;
         height: 0;
         padding-bottom:100%;
-        background-color: white;
+        background-color: var(--card-background-color);
         position: relative;
       }
 
