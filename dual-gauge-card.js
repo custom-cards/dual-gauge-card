@@ -28,8 +28,12 @@ class DualGaugeCard extends HTMLElement {
     if (!this.config.hasOwnProperty('shadeInner')) {
       this.config.shadeInner = true
     }
-    if (this.config.colors) {
-      this.config.inner.colors = this.config.outer.colors = this.config.colors;
+
+    if (!this.config.inner.colors) {
+      this.config.inner.colors = this.config.colors;
+    }
+    if (!this.config.outer.colors) {
+      this.config.outer.colors = this.config.colors;
     }
 
     if (this.config.inner.colors) {
