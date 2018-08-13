@@ -67,21 +67,21 @@ The example on the screenshot is configured like this:
     attribute: current_temperature
     label: "Current"
     unit: "°C"
-   inner:
-     entity: climate.living_room
-     label: "Target"
-     attribute: temperature
-     unit: "°C"
-   colors:
-     - color: "var(--label-badge-red)"
-       value: 27.5
-     - color: "var(--label-badge-green)"
-       value: 25
-     - color: "var(--label-badge-yellow)"
-       value: 18
-     - color: "var(--label-badge-blue)"
-       value: 0
-     - color: "var(--paper-blue-400)"
-       value: -40
+  inner:
+    entity: climate.living_room
+    label: "Target"
+    attribute: temperature
+    unit: "°C"
+  colors:
+    - color: "var(--label-badge-red)"
+      value: 27.5
+    - color: "var(--label-badge-green)"
+      value: 25
+    - color: "var(--label-badge-yellow)"
+      value: 18
+    - color: "var(--label-badge-blue)"
+      value: 0
+    - color: "var(--paper-blue-400)"
+      value: -40
 ```
 
