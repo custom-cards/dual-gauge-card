@@ -19,7 +19,7 @@ from scratch.
 | inner      | object |         | config for the outer gauge                       |
 | colors     | object |         | color config (optional)                          |
 | shadeInner | bool   | true    | shade (darken) colors of the inner gauge by 25%  |
-| cardwidth  | int    | 300     | width or the card in pixel (see below)           |
+| cardwidth  | int    | 300     | width of the card in pixels (see below)           |
 
 ### gauge config
 
@@ -50,7 +50,7 @@ To use a single color regardless of the value just use a single list entry with 
 the fallback.
 
 Colors may be configured for both gauges at once or for each gauge individualy. By default,
-colors for then inner gauge are shaded by 25% (see option _shadeInner_).
+colors for the inner gauge are shaded by 25% (see option _shadeInner_).
 
 The list is automatically sorted so you don't need to do that in your config - but I recommend it anyways.
 
