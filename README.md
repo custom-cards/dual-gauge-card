@@ -2,7 +2,8 @@
 
 Two gauges in one, built mostly with CSS.
 
-![dual-gauge-card-screenshot](https://user-images.githubusercontent.com/2353088/43733272-5f59d8fe-99b4-11e8-8161-0c55e096b862.png)
+<img align="left" width="400" src="https://user-images.githubusercontent.com/2353088/43733272-5f59d8fe-99b4-11e8-8161-0c55e096b862.png"> <img src=Example02.png width="375">
+
 
 
 Heavily inspired by [ciotlosm's gauge-card](https://github.com/ciotlosm/custom-lovelace/), but completly written
@@ -10,15 +11,16 @@ from scratch.
 
 ## Config
 
-| Name      | Type   | Default | Description                            |
-|-----------|--------|---------|----------------------------------------|
-| title     | string |         | Common title                           |
-| min       | int    | 0       | minimum value                          |
-| max       | int    | 100     | maximum value                          |
-| outer     | object |         | config for the outer gauge             |
-| inner     | object |         | config for the outer gauge             |
-| colors    | object |         | color config (optional)                |
-| cardwidth | int    | 300     | width or the card in pixel (see below) |
+| Name      | Type   | Default | Description                                      |
+|-----------|--------|---------|--------------------------------------------------|
+| title     | string |         | Common title                                     |
+| min       | int    | 0       | minimum value                                    |
+| max       | int    | 100     | maximum value                                    |
+| outer     | object |         | config for the outer gauge                       |
+| inner     | object |         | config for the outer gauge                       |
+| colors    | object |         | color config (optional)                          |
+| shadeInner| bool   | true    | shade (darken) colors of the inner gauge by 25%  |
+| cardwidth | int    | 300     | width or the card in pixel (see below)           |
 
 ### gauge config
 
@@ -50,24 +52,25 @@ If no color is found, the last color in the list is used as a fallback.
 To use a single color regardless of the value just use a single list entry with any value to always trigger
 the fallback.
 
-Colors may be configured for both gauges at once or for each gauge individualy. In the latter case,
-colors for then inner gauge are shaded by 25%.
+
+Colors may be configured for both gauges at once or for each gauge individualy. By default,
+colors for then inner gauge are shaded by 25% (see option _shadeInner_).
 
 The list is automatically sorted so you don't need to do that in your config - but I recommend it anyways.
 
 ### min and max config
 
-There is 3 ways to config the minimum and maximum value of the gauge:
+There is 2 ways to config the minimum and maximum value of the gauge:
 
-1. No configuration - The vaule for outer and inner will be 0-100 (as default)
-2. Configuration in the "Config" part - The vaule for outer and inner will be the same.
-3. Configuration in outer and inner separately - outer and inner will have different values , as you set
+1. **Configuration in the "Config" part** - The vaule for outer and inner gauge will be the same 
+2. **Configuration in outer and inner separately** - outer and inner will have different values , as you set
+    (you must to config the outer **and** the inner gauge, otherwise the the  gauge will have the default values.)
 
 
 
 ## Examples
 
-The example on the screenshot is configured like this:
+The example on the left screenshot is configured like this:
 ```
 - type: custom:dual-gauge-card
   title: Living room
@@ -78,49 +81,50 @@ The example on the screenshot is configured like this:
     attribute: current_temperature
     label: "Current"
     unit: "°C"
-   inner:
-     entity: climate.living_room
-     label: "Target"
-     attribute: temperature
-     unit: "°C"
-   colors:
-     - color: "var(--label-badge-red)"
-       value: 27.5
-     - color: "var(--label-badge-green)"
-       value: 25
-     - color: "var(--label-badge-yellow)"
-       value: 18
-     - color: "var(--label-badge-blue)"
-       value: 0
-     - color: "var(--paper-blue-400)"
-       value: -40
+  inner:
+    entity: climate.living_room
+    label: "Target"
+    attribute: temperature
+    unit: "°C"
+  colors:
+    - color: "var(--label-badge-red)"
+      value: 27.5
+    - color: "var(--label-badge-green)"
+      value: 25
+    - color: "var(--label-badge-yellow)"
+      value: 18
+    - color: "var(--label-badge-blue)"
+      value: 0
+    - color: "var(--paper-blue-400)"
+      value: -40
 ```
 Example for gauge with separately min and max values and colors-inside outer gauge and inner gauge:
 ```
       - type: custom:dual-gauge-card
-        title: SpeedTest
+        title: "Speed Test"
         outer:
-          entity: sensor.speedtest_download        
-          min: 0
-          max: 400
+          entity: sensor.speedtest_download
           label: "Down"
+          min: 0
+          max: 400          
           colors:
-           - color: 'var(--label-badge-red)'
-             value: 90
-           - color: 'var(--label-badge-yellow)'
+           - color: '#98FB98' #LiteGreen
+             value: 100
+           - color: '#00FF00' #Green
              value: 250
-           - color: 'var(--label-badge-green)'
+           - color: '#013220' #DarkGreen
              value: 350
         inner:
-          entity: sensor.speedtest_upload        
+          entity: sensor.speedtest_upload
+          label: "Up"
           min: 0
           max: 100
-          label: "Up"
           colors:
           - color: 'var(--label-badge-red)'
-            value: 30
+            value: 25
           - color: 'var(--label-badge-green)'
             value: 50
-          - color: 'var(--label-badge-blue)'
-            value: 70  
+          - color: 'var(--label-badge-yellow)'
+            value: 75 
 ```
+### Forked From @[Rocka84](https://github.com/Rocka84) 
