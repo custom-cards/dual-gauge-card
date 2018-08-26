@@ -278,7 +278,7 @@ class DualGaugeCard extends HTMLElement {
       }
 
       .gauge-background .circle {
-        border: calc(var(--gauge-width) * 2 - 1px) solid #e5e5e5;
+        border: calc(var(--gauge-width) * 2 - 2px) solid #e5e5e5;
       }
 
       .gauge-title {
