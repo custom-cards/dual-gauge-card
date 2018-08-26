@@ -25,6 +25,20 @@ class DualGaugeCard extends HTMLElement {
       this.config.max = 100;
     }
 
+    if (!this.config.inner.min) {
+      this.config.inner.min = this.config.min;
+    }
+    if (!this.config.inner.max) {
+      this.config.inner.max = this.config.max;
+    }
+
+    if (!this.config.outer.min) {
+      this.config.outer.min = this.config.min;
+    }
+    if (!this.config.outer.max) {
+      this.config.outer.max = this.config.max;
+    }
+
     if (!this.config.hasOwnProperty('shadeInner')) {
       this.config.shadeInner = true
     }
@@ -52,7 +66,7 @@ class DualGaugeCard extends HTMLElement {
   _updateGauge(gauge) {
     const gaugeConfig = this.config[gauge];
     const value = this._getEntityStateValue(this._hass.states[gaugeConfig.entity], gaugeConfig.attribute);
-    this.nodes.content.style.setProperty('--' + gauge + '-angle', this._calculateRotation(value));
+    this.nodes.content.style.setProperty('--' + gauge + '-angle', this._calculateRotation(value, gaugeConfig));
     this.nodes[gauge].value.innerHTML = this._formatValue(value, gaugeConfig);
     if (gaugeConfig.label) {
       this.nodes[gauge].label.innerHTML = gaugeConfig.label;
@@ -93,8 +107,8 @@ class DualGaugeCard extends HTMLElement {
     return entity.attributes[attribute];
   }
 
-  _calculateRotation(value) {
-    return (180 - (value - this.config.min) / (this.config.max - this.config.min) * -180) + 'deg';
+  _calculateRotation(value, gaugeConfig) {
+    return (180 - (value - gaugeConfig.min) / (gaugeConfig.max - gaugeConfig.min) * -180) + 'deg';
   }
 
   _findColor(value, gaugeConfig) {

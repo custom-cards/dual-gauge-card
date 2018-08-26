@@ -15,11 +15,11 @@ from scratch.
 | title      | string |         | Common title                                     |
 | min        | int    | 0       | minimum value                                    |
 | max        | int    | 100     | maximum value                                    |
-| outer      | object |         | config for the outer gauge                       |
-| inner      | object |         | config for the outer gauge                       |
 | colors     | object |         | color config (optional)                          |
 | shadeInner | bool   | true    | shade (darken) colors of the inner gauge by 25%  |
-| cardwidth  | int    | 300     | width of the card in pixels (see below)           |
+| cardwidth  | int    | 300     | width of the card in pixels (see below)          |
+| outer      | object |         | config for the outer gauge                       |
+| inner      | object |         | config for the inner gauge                       |
 
 ### gauge config
 
@@ -31,6 +31,8 @@ Both gauges have the same attributes:
 | attribute | string |         | use this attribute of the entity instead of its state (optional) |
 | label     | string |         | label for this gauges value (optional)                           |
 | unit      | object |         | unit to add to the value (optional)                              |
+| min       | int    |         | minimum value                                                    |
+| max       | int    |         | maximum value                                                    |
 | colors    | object |         | color config (optional)                                          |
 
 ### cardwidth
@@ -42,17 +44,20 @@ responsive for now, i.e. it doesn't resize automatically.
 
 ### color config
 
-Colors can be configured as list of pairs of each a color and a value.
+Colors can be configured as list of pairs of each a color and a minimum value.
 
-If a gauges value is above one of those values, the according color is used for that gauge.
-If no color is found, the last color in the list is used as a fallback.
+If a gauges value is greater than or equal to one of those minimum values, the according color 
+is used for that gauge. If no color is found, the last color in the list is used as a fallback.
 To use a single color regardless of the value just use a single list entry with any value to always trigger
 the fallback.
 
-Colors may be configured for both gauges at once or for each gauge individualy. By default,
-colors for the inner gauge are shaded by 25% (see option _shadeInner_).
+By default, colors for the inner gauge are shaded by 25% (see option _shadeInner_).
 
 The list is automatically sorted so you don't need to do that in your config - but I recommend it anyways.
+
+### common config vs. individual config
+
+Colors, as well as the min and max values, may be configured once for both gauges or individually for each gauge. Individual values override common values.
 
 ## Example
 
@@ -83,5 +88,33 @@ The example on the screenshot is configured like this:
       value: 0
     - color: "var(--paper-blue-400)"
       value: -40
+```
+
+In this example, the outer gauge has individual min and max values and uses default colors, whereas the inner
+gauge has individual colors and uses the common min and max values.
+```
+- type: custom:dual-gauge-card
+  title: Living room
+  min: -20
+  max: 40
+  outer:
+    entity: climate.living_room
+    attribute: current_temperature
+    label: "Current"
+    unit: "°C"
+    min: -30
+    max: 50
+  inner:
+    entity: climate.living_room
+    label: "Target"
+    attribute: temperature
+    unit: "°C"
+    colors:
+      - color: "var(--label-badge-green)"
+        value: 25
+      - color: "var(--label-badge-yellow)"
+        value: 18
+      - color: "var(--label-badge-blue)"
+        value: 0
 ```
 
