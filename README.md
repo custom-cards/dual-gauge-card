@@ -10,16 +10,17 @@ from scratch.
 
 ## Config
 
-| Name       | Type   | Default | Description                                      |
-|------------|--------|---------|--------------------------------------------------|
-| title      | string |         | Common title                                     |
-| min        | int    | 0       | minimum value                                    |
-| max        | int    | 100     | maximum value                                    |
-| colors     | object |         | color config (optional)                          |
-| shadeInner | bool   | true    | shade (darken) colors of the inner gauge by 25%  |
-| cardwidth  | int    | 300     | width of the card in pixels (see below)          |
-| outer      | object |         | config for the outer gauge                       |
-| inner      | object |         | config for the inner gauge                       |
+| Name             | Type   | Default | Description                                      |
+|------------------|--------|---------|--------------------------------------------------|
+| title            | string |         | Common title                                     |
+| min              | int    | 0       | minimum value                                    |
+| max              | int    | 100     | maximum value                                    |
+| colors           | object |         | color config (optional)                          |
+| background_color | string |         | background color of the gauges                   |
+| shadeInner       | bool   | true    | shade (darken) colors of the inner gauge by 25%  |
+| cardwidth        | int    | 300     | width of the card in pixels (see below)          |
+| outer            | object |         | config for the outer gauge                       |
+| inner            | object |         | config for the inner gauge                       |
 
 ### gauge config
 

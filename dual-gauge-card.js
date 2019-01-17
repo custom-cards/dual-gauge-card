@@ -66,7 +66,7 @@ class DualGaugeCard extends HTMLElement {
   _updateGauge(gauge) {
     const gaugeConfig = this.config[gauge];
     const value = this._getEntityStateValue(this._hass.states[gaugeConfig.entity], gaugeConfig.attribute);
-    this.nodes.content.style.setProperty('--' + gauge + '-angle', this._calculateRotation(value, gaugeConfig));
+    this._setCssVariable(this.nodes.content, gauge + '-angle', this._calculateRotation(value, gaugeConfig));
     this.nodes[gauge].value.innerHTML = this._formatValue(value, gaugeConfig);
     if (gaugeConfig.label) {
       this.nodes[gauge].label.innerHTML = gaugeConfig.label;
@@ -74,7 +74,7 @@ class DualGaugeCard extends HTMLElement {
 
     const color = this._findColor(value, gaugeConfig);
     if (color) {
-      this.nodes.content.style.setProperty('--' + gauge + '-color', color);
+      this._setCssVariable(this.nodes.content, gauge + '-color', color);
     }
   }
 
@@ -202,10 +202,18 @@ class DualGaugeCard extends HTMLElement {
     }
 
     if (this.config.cardwidth) {
-      this.nodes.content.style.setProperty('--gauge-card-width', this.config.cardwidth + 'px');
+      this._setCssVariable(this.nodes.content, 'gauge-card-width', this.config.cardwidth + 'px');
+    }
+
+    if (this.config.background_color) {
+      this._setCssVariable(this.nodes.content, 'gauge-background-color', this.config.background_color);
     }
 
     this._initStyles();
+  }
+
+  _setCssVariable(node, variable, value) {
+    node.style.setProperty('--' + variable, value);
   }
 
   _initStyles() {
@@ -216,6 +224,7 @@ class DualGaugeCard extends HTMLElement {
         --inner-value: 50;
         --outer-color: var(--primary-color);
         --inner-color: var(--primary-color);
+        --gauge-background-color: var(--secondary-background-color);
 
         --outer-angle: 90deg;
         --inner-angle: 90deg;
@@ -278,7 +287,7 @@ class DualGaugeCard extends HTMLElement {
       }
 
       .gauge-background .circle {
-        border: calc(var(--gauge-width) * 2 - 2px) solid #e5e5e5;
+        border: calc(var(--gauge-width) * 2 - 2px) solid var(--gauge-background-color);
       }
 
       .gauge-title {
