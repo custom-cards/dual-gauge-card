@@ -108,7 +108,8 @@ class DualGaugeCard extends HTMLElement {
   }
 
   _calculateRotation(value, gaugeConfig) {
-    return (180 - (value - gaugeConfig.min) / (gaugeConfig.max - gaugeConfig.min) * -180) + 'deg';
+    const maxTurnValue = Math.min(Math.max(value, gaugeConfig.min), gaugeConfig.max);
+    return (180 + (5 * (maxTurnValue - gaugeConfig.min)) / (gaugeConfig.max - gaugeConfig.min) / 10 * 360) + 'deg';
   }
 
   _findColor(value, gaugeConfig) {
