@@ -2,6 +2,8 @@
 
 Two gauges in one, built mostly with CSS.
 
+[![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+
 ![dual-gauge-card-screenshot](https://user-images.githubusercontent.com/2353088/43733272-5f59d8fe-99b4-11e8-8161-0c55e096b862.png)
 
 
