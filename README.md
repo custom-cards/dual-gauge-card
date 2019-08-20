@@ -8,6 +8,19 @@ Two gauges in one, built mostly with CSS.
 Heavily inspired by [ciotlosm's gauge-card](https://github.com/ciotlosm/custom-lovelace/), but completly written
 from scratch.
 
+## Installation
+
+Use [HACS](https://github.com/custom-components/hacs) (recommended)
+or download [dual-gauge-card.js](https://github.com/custom-cards/dual-gauge-card/raw/master/dual-gauge-card.js) and place it in your www directory.
+
+In your ui-lovelace.yaml add this:
+```yaml
+  - url: /community_plugin/dual-gauge-card/dual-gauge-card.js
+    type: js
+```
+
+If you don't use HACS please change the url accordingly.
+
 ## Config
 
 | Name             | Type   | Default | Description                                      |
