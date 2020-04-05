@@ -16,7 +16,6 @@ class DualGaugeCard extends HTMLElement {
     if (!config.outer || !config.outer.entity) {
       throw new Error('You need to define an entity for the outer gauge');
     }
-    this.config = config;
 
     if (!this.config.min) {
       this.config.min = 0;
