@@ -59,6 +59,31 @@ class DualGaugeCard extends HTMLElement {
   }
 
   _update() {
+    if (this._hass.states[this.config['inner'].entity] == undefined ||
+       this._hass.states[this.config['outer'].entity] == undefined) {
+      console.warn("Undefined entity");
+      if (this.card) {
+        this.card.remove();
+      }
+
+      this.card = document.createElement('ha-card');
+      if (this.config.header) {
+        this.card.header = this.config.header;
+      }
+
+      const content = document.createElement('p');
+      content.style.background = "#e8e87a";
+      content.style.padding = "8px";
+      content.innerHTML = "Error finding these entities:<br>- " +
+        this.config['inner'].entity +
+        "<br>- " + this.config['outer'].entity;
+      this.card.appendChild(content);
+      
+      this.appendChild(this.card);
+      return;
+    } else if (this.card && this.card.firstElementChild.tagName.toLowerCase() == "p") {
+      this._createCard();
+    }
     this._updateGauge('inner');
     this._updateGauge('outer');
   }
