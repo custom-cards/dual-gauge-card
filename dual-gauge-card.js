@@ -126,10 +126,10 @@ class DualGaugeCard extends HTMLElement {
 
   _getEntityStateValue(entity, attribute) {
     if (!attribute) {
-      return entity.state;
+      return (Math.round(entity.state*10)/10); //rounds the value to 1 decimal place
     }
 
-    return entity.attributes[attribute];
+    return (Math.round(entity.attributes[attribute]*10)/10);
   }
 
   _calculateRotation(value, gaugeConfig) {
