@@ -126,13 +126,15 @@ class DualGaugeCard extends HTMLElement {
 
   _getEntityStateValue(entity, attribute) {
     if (!attribute) {
-      return (Math.round(entity.state*10)/10); //rounds the value to 1 decimal place
+      if(isNaN(entity.state)) return "-" ; //check if entity state is NaN
+      else return (Math.round(entity.state*10)/10); //rounds the value to 1 decimal place
     }
 
-    return (Math.round(entity.attributes[attribute]*10)/10);
+    return entity.attributes[attribute];
   }
 
   _calculateRotation(value, gaugeConfig) {
+    if(isNaN(value)) return '180deg'; //check if value is NaN
     const maxTurnValue = Math.min(Math.max(value, gaugeConfig.min), gaugeConfig.max);
     return (180 + (5 * (maxTurnValue - gaugeConfig.min)) / (gaugeConfig.max - gaugeConfig.min) / 10 * 360) + 'deg';
   }
