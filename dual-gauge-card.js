@@ -364,6 +364,7 @@ class DualGaugeCard extends HTMLElement {
 
       .gauge-value-outer, .gauge-label-outer {
         color: var(--outer-color);
+        font-size: var(--outer-font-size);
       }
 
 
@@ -376,7 +377,6 @@ class DualGaugeCard extends HTMLElement {
 
       .outer-gauge {
         transform: rotate(var(--outer-angle));
-        font-size: var(--outer-font-size);
       }
 
       .outer-gauge .circle {
