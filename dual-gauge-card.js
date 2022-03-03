@@ -127,12 +127,12 @@ class DualGaugeCard extends HTMLElement {
   _getEntityStateValue(entity, attribute) {
     if (!attribute) {
       if(isNaN(entity.state)) return "-" ; //check if entity state is NaN
-      else return (Math.round(entity.state*10)/10); //rounds the value to 1 decimal place
+      else return entity.state;
     }
 
     // return entity.attributes[attribute];
     if(isNaN(entity.attributes[attribute])) return "-" ; //check if entity attribute is NaN
-    else return (Math.round(entity.attributes[attribute]*10)/10); //rounds the value to 1 decimal place
+    else return entity.attributes[attribute];
   }
 
   _calculateRotation(value, gaugeConfig) {
