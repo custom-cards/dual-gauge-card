@@ -3,7 +3,7 @@
 Two gauges in one, built mostly with CSS.
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/custom-components/hacs)
+[![hacs_badge](https://img.shields.io/badge/HACS-Default-orange.svg)](https://github.com/hacs/integration)
 
 
 ![dual-gauge-card-screenshot](https://user-images.githubusercontent.com/2353088/43733272-5f59d8fe-99b4-11e8-8161-0c55e096b862.png)
