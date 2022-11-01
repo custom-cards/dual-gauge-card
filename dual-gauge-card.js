@@ -56,6 +56,16 @@ class DualGaugeCard extends HTMLElement {
     if (this.config.outer.colors) {
       this.config.outer.colors.sort((a, b) => a.value < b.value ? 1 : -1);
     }
+    
+    if (!this.config.fontsize) { 
+      this.config.fontsize = 20; 
+    }
+    if (!this.config.outer.fontsize) { 
+      this.config.outer.fontsize = this.config.fontsize; 
+    } 
+    if (!this.config.inner.fontsize) { 
+      this.config.inner.fontsize = this.config.fontsize; 
+    }
   }
 
   _update() {
@@ -238,6 +248,13 @@ class DualGaugeCard extends HTMLElement {
     if (this.config.background_color) {
       this._setCssVariable(this.nodes.content, 'gauge-background-color', this.config.background_color);
     }
+    
+    if (this.config.outer.fontsize) { 
+      this._setCssVariable(this.nodes.content, 'outer-font-size', this.config.outer.fontsize + 'px'); 
+    } 
+    if (this.config.inner.fontsize) { 
+      this._setCssVariable(this.nodes.content, 'inner-font-size', this.config.inner.fontsize + 'px'); 
+    }
 
     this._initStyles();
   }
@@ -262,6 +279,9 @@ class DualGaugeCard extends HTMLElement {
         --value-font-size: calc(var(--gauge-card-width) / 17);
         --title-font-size: calc(var(--gauge-card-width) / 14);
         --label-font-size: calc(var(--gauge-card-width) / 20);
+        
+        --outer-font-size: var(--outer-font-size); 
+        --inner-font-size: var(--inner-font-size);
 
         width: var(--gauge-card-width);
         padding: 16px;
@@ -348,12 +368,14 @@ class DualGaugeCard extends HTMLElement {
 
       .gauge-value-outer, .gauge-label-outer {
         color: var(--outer-color);
+        font-size: var(--outer-font-size);
       }
 
 
       .gauge-value-inner, .gauge-label-inner {
         right: 0;
         color: var(--inner-color);
+        font-size: var(--inner-font-size);
       }
 
 
