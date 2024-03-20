@@ -38,6 +38,7 @@ If you don't use HACS please change the url accordingly.
 | cardwidth        | int    | 300     | width of the card in pixels (see below)          |
 | outer            | object |         | config for the outer gauge                       |
 | inner            | object |         | config for the inner gauge                       |
+| precision        | int    | 2       | decimal precision                                |
 
 ### gauge config
 
@@ -52,6 +53,7 @@ Both gauges have the same attributes:
 | min       | int    |         | minimum value                                                    |
 | max       | int    |         | maximum value                                                    |
 | colors    | object |         | color config (optional)                                          |
+| precision | int    | 2       | decimal precision                                                |
 
 ### cardwidth
 
@@ -115,6 +117,7 @@ gauge has individual colors and uses the common min and max values.
   title: Living room
   min: -20
   max: 40
+  precision: 2
   outer:
     entity: climate.living_room
     attribute: current_temperature
