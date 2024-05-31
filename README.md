@@ -1,5 +1,12 @@
 # Dual gauge card
 
+> [!IMPORTANT]
+> **Looking for new maintainer!**
+> 
+> I can't find the time or inspiration to take care of this project anymore.  
+> So if you'd like to become the new maintainer of this project please let me know via a Pull request!
+
+  
 Two gauges in one, built mostly with CSS.
 
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
