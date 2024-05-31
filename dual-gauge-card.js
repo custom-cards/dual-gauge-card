@@ -25,6 +25,16 @@ class DualGaugeCard extends HTMLElement {
       this.config.max = 100;
     }
 
+    if (this.config.precision === undefined) {
+      this.config.precision = 2;
+    }
+    if (this.config.inner.precision === undefined) {
+      this.config.inner.precision = this.config.precision;
+    }
+    if (this.config.outer.precision === undefined) {
+      this.config.outer.precision = this.config.precision;
+    }
+
     if (!this.config.inner.min) {
       this.config.inner.min = this.config.min;
     }
@@ -117,8 +127,15 @@ class DualGaugeCard extends HTMLElement {
   }
 
   _formatValue(value, gaugeConfig) {
+
+    value = parseFloat(value);
+
+    if (gaugeConfig.precision !== undefined) {
+      value = value.toFixed(gaugeConfig.precision);
+    }
+
     if (gaugeConfig.unit) {
-      return value + gaugeConfig.unit;
+      value = value.toString() + gaugeConfig.unit;
     }
 
     return value;
