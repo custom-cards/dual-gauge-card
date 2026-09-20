@@ -130,6 +130,10 @@ class DualGaugeCard extends HTMLElement {
 
     value = parseFloat(value);
 
+    if (isNaN(value)) {
+      return '-';
+    }
+
     if (gaugeConfig.precision !== undefined) {
       value = value.toFixed(gaugeConfig.precision);
     }
